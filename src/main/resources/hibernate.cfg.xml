@@ -14,6 +14,8 @@
 
         <mapping class="com.vektorel.entity.Admin"></mapping>
         <mapping class="com.vektorel.entity.Customer"></mapping>
+        <mapping class="com.vektorel.entity.City"></mapping>
+        <mapping class="com.vektorel.entity.Country"></mapping>
 
 
     </session-factory>

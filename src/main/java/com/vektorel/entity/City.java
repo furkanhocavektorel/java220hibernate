@@ -1,9 +1,6 @@
 package com.vektorel.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -12,13 +9,11 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @Entity
-public class Customer {
-
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String ad;
-
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Country country;
 }

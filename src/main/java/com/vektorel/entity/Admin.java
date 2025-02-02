@@ -1,75 +1,46 @@
 package com.vektorel.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
 // Anotasyon --> Annotation
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
+@Table(name = "ADMINS")
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // ad alanı 100 karakter olmalı.
+    @Column(length = 100)
     private String ad;
+
+    @Column(
+            name = "surname",
+            insertable = true, // false ekleme yapamazsınız
+            updatable = false // false yaparsanız güncelleme yapılamaz
+    )
     private String soyad;
+
+    @Column(length = 200,nullable = false,unique = true)
     private String email;
     private String password;
 
+    // erkek,kadın
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
-    public String ozellikGetir(){
-        String metin= "id: "+id+", ad: "+ad+", email: "+email+", sifre: "+ password;
-        return metin;
-    }
 
-    public Admin(Long id, String ad, String soyad, String email, String password) {
-        this.id = id;
-        this.ad = ad;
-        this.soyad = soyad;
-        this.email = email;
-        this.password = password;
-    }
 
-    public Admin() {
-    }
+//    public String ozellikGetir(){
+//        String metin= "id: "+id+", ad: "+ad+", email: "+email+", sifre: "+ password;
+//        return metin;
+//    }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAd() {
-        return ad;
-    }
-
-    public void setAd(String ad) {
-        this.ad = ad;
-    }
-
-    public String getSoyad() {
-        return soyad;
-    }
-
-    public void setSoyad(String soyad) {
-        this.soyad = soyad;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
