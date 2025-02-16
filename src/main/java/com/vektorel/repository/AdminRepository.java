@@ -4,6 +4,7 @@ import com.vektorel.entity.Admin;
 import com.vektorel.entity.Gender;
 import com.vektorel.util.DbConnection;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,48 +41,41 @@ public class AdminRepository {
 
 
     // SQL SORGUSU -> Native Sorgu
-    public void findAllAdmin(){
-
+    public List<Admin> findAllAdmin(){
         try {
             dbConnection.openSession();
             List<Admin> adminList=dbConnection.session
-                   .createNativeQuery("select * from tbl_admin",Admin.class).getResultList();
-
-            for (Admin a:adminList) {
-                System.out.println(a.toString());
-            }
+                   .createNativeQuery("select * from admins",Admin.class).getResultList();
 
             dbConnection.closeSession();
 
+            return adminList;
         }catch (Exception e){
             e.printStackTrace();
             dbConnection.rollBack();
+            return new ArrayList<>();
         }
 
 
     }
 
     // HQL SORGUSU -> Hibernate Quary Langueage
-    public void findAllAdmin2(){
+    public List<Admin> findAllAdmin2(){
 
         try {
             dbConnection.openSession();
             List<Admin> adminList = dbConnection.session
+                    // Admin -> Admins
                     .createSelectionQuery("from Admin",Admin.class).getResultList();
 
-            for (Admin a:adminList) {
-                System.out.println(a.toString());
-            }
-
             dbConnection.closeSession();
-
+            return adminList;
 
         }catch (Exception e){
             e.printStackTrace();
             dbConnection.rollBack();
+            return new ArrayList<>();
         }
-
-
     }
 
 }

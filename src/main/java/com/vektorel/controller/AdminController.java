@@ -3,6 +3,8 @@ package com.vektorel.controller;
 import com.vektorel.entity.Admin;
 import com.vektorel.service.AdminService;
 
+import java.util.List;
+
 public class AdminController {
     private AdminService adminService;
 
@@ -16,4 +18,14 @@ public class AdminController {
     public Admin findById(long id){
         return adminService.findById(id);
     }
+
+    public List<Admin> getAllAdminNative(){
+        return adminService.getAllAdmin();
+    }
+
+    public List<Admin> getAllAdminHql(){
+        return adminService.getAllAdminHql();
+    }
+
+
 }

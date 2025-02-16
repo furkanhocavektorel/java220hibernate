@@ -16,15 +16,20 @@ public class Main {
 
         AdminRepository adminRepository= new AdminRepository();
 
-        System.out.println("**************");
-        System.out.println("***** SQL ****");
+        Admin admin= new Admin();
+        admin.setAd("test2");
+        admin.setEmail("test2@gmail.com");
+        admin.setGender(Gender.ERKEK);
+        admin.setSoyad("tests2");
+        admin.setPassword("testpass2");
+        adminRepository.save(admin);
 
-        adminRepository.findAllAdmin();
+        AdminController controller= new AdminController();
 
-        System.out.println("**************");
-        System.out.println("***** HQL ****");
+        for(Admin a : controller.getAllAdminNative()){
+            System.out.println(a.getAd()+", soyad:"+ a.getSoyad());
+        }
 
-        adminRepository.findAllAdmin2();
     }
 
 

@@ -3,6 +3,7 @@ package com.vektorel.service;
 import com.vektorel.entity.Admin;
 import com.vektorel.repository.AdminRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AdminService {
@@ -30,5 +31,14 @@ public class AdminService {
         }
         return null;
     }
+
+    public List<Admin> getAllAdmin(){
+       return adminRepository.findAllAdmin();
+    }
+
+    public List<Admin> getAllAdminHql(){
+        return adminRepository.findAllAdmin2();
+    }
+
 
 }
